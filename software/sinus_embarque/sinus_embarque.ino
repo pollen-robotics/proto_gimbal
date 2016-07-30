@@ -1,8 +1,5 @@
-//
-// Slow and precise BLDC motor driver using SPWM and SVPWM modulation
-// Part of code used from http://elabz.com/
-// (c) 2015 Ignas Gramba www.berryjam.eu
-// 
+// Pollen Robotics
+// Inspired from http://www.berryjam.eu/2015/04/driving-bldc-gimbals-at-super-slow-speeds-with-arduino/
 
 #define PI 3.1415926535897932384626433832795
 #define HALF_PI 1.5707963267948966192313216916398
