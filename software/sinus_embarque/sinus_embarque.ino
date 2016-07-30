@@ -43,6 +43,7 @@ void setup() {
 
   cmdHdl.addCommand("A", setAmplitude);  // send A,0.5; to change amplitude to 0.5, min 0, max 1
   cmdHdl.addCommand("F", setFreq);  // send F,1; to set frequency to 1Hz, should be above 0 
+  cmdHdl.addCommand("D", setDir);  // send D,1; to set direction to one side, D,0, for the other 
   cmdHdl.setDefaultHandler(unrecognized);
   
   //
@@ -122,6 +123,16 @@ void setFreq(){
       period = newPeriod;
       return;
     }
+  }
+  sendError();
+}
+
+void setDir(){
+  bool dir;
+  dir = cmdHdl.readBoolArg();
+  if (cmdHdl.argOk) {
+     direct = dir;
+     return;
   }
   sendError();
 }
