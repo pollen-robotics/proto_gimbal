@@ -140,6 +140,7 @@ void setDir(){
 void sendError(){
   cmdHdl.initCmd();
   cmdHdl.addCmdString("ERROR");
+  cmdHdl.addCmdTerm();
   cmdHdl.sendCmdSerial();
 }
 
@@ -147,6 +148,7 @@ void sendError(){
 void unrecognized(const char *command) {
   cmdHdl.initCmd();
   cmdHdl.addCmdString("UNKNOWN");
+  cmdHdl.addCmdTerm();
   cmdHdl.sendCmdSerial();
 }
 
