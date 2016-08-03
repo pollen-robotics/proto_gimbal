@@ -40,7 +40,8 @@ void setup() {
 
   cmdHdl.addCommand("A", setAmplitude);  // send A,0.5; to change amplitude to 0.5, min 0, max 1
   cmdHdl.addCommand("F", setFreq);  // send F,1; to set frequency to 1Hz, should be above 0 
-  cmdHdl.addCommand("D", setDir);  // send D,1; to set direction to one side, D,0, for the other 
+  cmdHdl.addCommand("D", setDir);  // send D,1; to set direction to one side, D,0; for the other 
+  cmdHdl.addCommand("E", setEnable);  // send E,1; to enable side, E,0; to disable 
   cmdHdl.setDefaultHandler(unrecognized);
   
   //
@@ -53,7 +54,7 @@ void setup() {
   pinMode(IN3, OUTPUT); 
   
   pinMode(EN, OUTPUT);
-  digitalWrite(EN, HIGH);
+  digitalWrite(EN, LOW);
 
   current_time = millis();
 
@@ -128,11 +129,22 @@ void setDir(){
   bool dir;
   dir = cmdHdl.readBoolArg();
   if (cmdHdl.argOk) {
-     direct = dir;
-     return;
+    direct = dir;
+    return;
   }
   sendError();
 }
+
+void setEnable(){
+  bool en;
+  en = cmdHdl.readBoolArg();
+  if (cmdHdl.argOk) {
+    digitalWrite(EN, en);
+    return;
+  }
+  sendError();
+}
+
 
 void sendError(){
   cmdHdl.initCmd();
